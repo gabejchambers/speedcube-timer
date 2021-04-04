@@ -5,7 +5,8 @@ class Timer extends Component {
     state = {
         timerOn: false,
         timerStart: 0,
-        timerTime: 0
+        timerTime: 0,
+        flavor: "START"
     };
 
     componentDidMount(){
@@ -16,7 +17,8 @@ class Timer extends Component {
         this.setState({
             timerOn: true,
             timerTime: this.state.timerTime,
-            timerStart: Date.now() - this.state.timerTime
+            timerStart: Date.now() - this.state.timerTime,
+            flavor: "STOP"
         });
         this.timer = setInterval(() => {
             this.setState({
@@ -27,13 +29,14 @@ class Timer extends Component {
 
     stopTimer = () => {
         this.setState({ timerOn: false });
+        this.setState({ flavor: "RESTART" });
         clearInterval(this.timer);
     };
 
     resetTimer = () => {
         this.setState({
             timerStart: 0,
-            timerTime: 0
+            timerTime: 0,
         });
         this.startTimer();
     };
@@ -56,19 +59,8 @@ class Timer extends Component {
         let seconds = ("0" + Math.floor(timerTime / 1000)).slice(-2);
         return (
             <div className="Timer">
-                <div className="Timer-header">Timer</div>
-                <div className="Timer-display">
-                    {seconds-0}.{centiseconds}
-                </div>
-                {this.state.timerOn === false && this.state.timerTime === 0 && (
-                    <div>SPACE to START</div>
-                )}
-                {this.state.timerOn === true && (
-                    <div>SPACE to STOP</div>
-                )}
-                {this.state.timerOn === false && this.state.timerTime > 0 && (
-                    <div>SPACE to RESTART</div>
-                )}
+                <div className="Timer-display">{Number(seconds)}.{centiseconds}</div>
+                <div className={"Timer-text"}>SPACE to {this.state.flavor}</div>
             </div>
         );
     }
