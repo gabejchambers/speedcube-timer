@@ -28,8 +28,8 @@ class Timer extends Component {
     };
 
     stopTimer = () => {
-        this.setState({ timerOn: false });
-        this.setState({ flavor: "RESTART" });
+        this.setState({ timerOn: false, flavor: "RESTART" });
+        // this.setState({ flavor: "RESTART" });
         clearInterval(this.timer);
     };
 
@@ -42,9 +42,8 @@ class Timer extends Component {
     };
 
     handleKeyPress = (event) => {
-        console.log(event.key);
         if(event.key === ' ') {
-            if (this.state.timerOn === true)
+            if (this.state.timerOn)
                 this.stopTimer();
             else if (this.state.timerTime === 0 )
                 this.startTimer();

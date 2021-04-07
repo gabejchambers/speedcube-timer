@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
 import Timer from "./components/timer";
+import Scramble from "./components/scramble";
 
 class App extends Component {
   render() {
@@ -9,6 +9,7 @@ class App extends Component {
           <div className="Timers">
             <Timer/>
           </div>
+            <Scramble/>
         </div>
     );
   }
