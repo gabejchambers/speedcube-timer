@@ -1,12 +1,18 @@
 import React, { Component } from "react";
-import "../App.css";
+import "../../App.css";
+import TContainer from "./times_container";
+import Times from "./times";
+let Scrambo = require('scrambo');
+
+let scramble = new Scrambo();
 
 class Timer extends Component {
     state = {
         timerOn: false,
         timerStart: 0,
         timerTime: 0,
-        flavor: "START"
+        flavor: "START",
+        times: []
     };
 
     componentDidMount(){
@@ -28,8 +34,10 @@ class Timer extends Component {
     };
 
     stopTimer = () => {
+        let tempTimes = this.state.times;
+        tempTimes.push(new Times(this.state.timerTime/1000));
+        this.setState({ times: tempTimes });
         this.setState({ timerOn: false, flavor: "RESTART" });
-        // this.setState({ flavor: "RESTART" });
         clearInterval(this.timer);
     };
 
@@ -57,9 +65,16 @@ class Timer extends Component {
         let centiseconds = ("0" + (Math.floor(timerTime / 10) % 100)).slice(-2);
         let seconds = ("0" + Math.floor(timerTime / 1000)).slice(-2);
         return (
+            <div>
+                <div className="Timers">
             <div className="Timer">
                 <div className="Timer-display">{Number(seconds)}.{centiseconds}</div>
                 <div className={"Timer-text"}>SPACE to {this.state.flavor}</div>
+            </div>
+                </div>
+                <div className="Times">
+                    <TContainer times={this.state.times}/>
+                </div>
             </div>
         );
     }
