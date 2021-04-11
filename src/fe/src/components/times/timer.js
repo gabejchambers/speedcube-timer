@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../../App.css";
 import TContainer from "./times_container";
-import Times from "./times";
 let Scrambo = require('scrambo');
 
 let scramble = new Scrambo();
@@ -12,11 +11,17 @@ class Timer extends Component {
         timerStart: 0,
         timerTime: 0,
         flavor: "START",
-        times: []
+        times: [],
+        scrambleString: false
     };
 
     componentDidMount(){
+        this.newScramble();
         document.addEventListener('keydown',this.handleKeyPress);
+    }
+
+    newScramble() {
+        this.setState({scrambleString: scramble.get(1)});
     }
 
     startTimer = () => {
@@ -35,10 +40,11 @@ class Timer extends Component {
 
     stopTimer = () => {
         let tempTimes = this.state.times;
-        tempTimes.push(new Times(this.state.timerTime/1000));
+        tempTimes.push({"time": Math.round(this.state.timerTime/10)/100, "scramble": this.state.scrambleString});
         this.setState({ times: tempTimes });
         this.setState({ timerOn: false, flavor: "RESTART" });
         clearInterval(this.timer);
+        this.newScramble();
     };
 
     resetTimer = () => {
@@ -66,6 +72,11 @@ class Timer extends Component {
         let seconds = ("0" + Math.floor(timerTime / 1000)).slice(-2);
         return (
             <div>
+                <div className="Scramble">
+                    { this.state.scrambleString &&
+                    <div className={"Scramble-text"}>{this.state.scrambleString}</div>
+                    }
+                </div>
                 <div className="Timers">
             <div className="Timer">
                 <div className="Timer-display">{Number(seconds)}.{centiseconds}</div>

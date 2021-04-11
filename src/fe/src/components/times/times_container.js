@@ -7,8 +7,8 @@ class Container extends Component {
         return (
             <div>Times
             <div>
-                {this.props.times.map( (time) => (
-                    <div>{time.time}</div>
+                {this.props.times.map( (time_in) => (
+                    <Times time={time_in.time} scramble={time_in.scramble}/>
                 ))}
             </div>
             </div>
