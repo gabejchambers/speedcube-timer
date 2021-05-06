@@ -5,7 +5,7 @@ import "../../App.css";
 class Container extends Component {
     render() {
         return (
-            <div>Times
+            <div><div className={"sub-header"}> Times </div>
             <div>
                 {this.props.times.map( (time_in) => (
                     <Times time={time_in.time} scramble={time_in.scramble}/>

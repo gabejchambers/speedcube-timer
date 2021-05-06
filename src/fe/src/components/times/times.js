@@ -18,11 +18,11 @@ class Times extends Component {
 
         return (
             <div>
-            <span>
+            <span className={'time-text'}>
                 {this.props.time}
             </span>
                 <span> </span>
-                <span
+                <span className={'scramble-text-single'}
                     onMouseEnter={this.onMouseover.bind(this)}
                     onMouseLeave={this.onMouseout.bind(this)}>
                 {this.state.scrambleText}
