@@ -6,7 +6,7 @@ class Container extends Component {
     render() {
         return (
             <div><div className={"sub-header"}> Times </div>
-            <div>
+            <div className={"times-list"}>
                 {this.props.times.map( (time_in) => (
                     <Times time={time_in.time} scramble={time_in.scramble}/>
                 ))}
