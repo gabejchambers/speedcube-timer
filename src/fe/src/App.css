@@ -79,13 +79,13 @@
 }
 
 .sub-header {
-  padding: 5px;
+  padding: 7px;
   width: fit-content;
   background-color: dimgrey;
   border-top-right-radius: 2px;
   border-top-left-radius: 2px;
   text-align: left;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -95,7 +95,6 @@
 }
 
 .scramble-text-single {
-  /*text-decoration: underline;*/
   font-family: "Roboto", sans-serif;
   color: rgb(150, 150, 150);
 }
@@ -105,9 +104,9 @@
   height: 45vh;
   overflow-y: auto;
   background-color: dimgrey;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
 }
 
 .hover-scramble {
